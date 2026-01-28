@@ -15,8 +15,8 @@ Copilot Booster is an educational simulation that demonstrates how GitHub Copilo
 No installation required! The simulator is pure Python with no external dependencies.
 
 ```bash
-# Clone the repository
-git clone https://github.com/avram0korets0kornit/copilot-booster.git
+# Clone the repository (replace with your actual repository URL)
+git clone https://github.com/YOUR_USERNAME/copilot-booster.git
 cd copilot-booster
 ```
 

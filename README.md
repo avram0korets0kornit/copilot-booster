@@ -1,6 +1,6 @@
 # Copilot Booster 🚀
 
-A educational simulation that demonstrates how GitHub Copilot works internally to help developers understand the AI-powered code completion process.
+An educational simulation that demonstrates how GitHub Copilot works internally to help developers understand the AI-powered code completion process.
 
 ## 🎯 Purpose
 

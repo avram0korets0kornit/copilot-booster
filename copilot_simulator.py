@@ -18,7 +18,13 @@ from enum import Enum
 
 
 class ContextType(Enum):
-    """Types of context that Copilot considers"""
+    """
+    Types of context that Copilot considers.
+    
+    Note: This enum is defined for documentation and potential future extensions.
+    It categorizes the different types of context that a full implementation
+    would track and analyze separately.
+    """
     CURRENT_FILE = "current_file"
     CURSOR_POSITION = "cursor_position"
     SURROUNDING_CODE = "surrounding_code"
@@ -231,8 +237,8 @@ class SuggestionEngine:
                         reasoning="Comment mentions checking/validation"
                     ))
             
-            # Pattern 4: After if statement, suggest else
-            elif last_line.startswith('if ') and last_line.endswith(':'):
+            # Pattern 4: After if statement, suggest else clause
+            elif re.match(self.patterns['if_statement'], last_line):
                 suggestions.append(Suggestion(
                     text='    pass\nelse:\n    pass',
                     confidence=0.65,
