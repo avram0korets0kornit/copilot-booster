@@ -20,10 +20,17 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // CORS middleware for development
+// NOTE: In production, restrict origins to specific domains instead of '*'
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    
     next();
 });
 
@@ -126,10 +133,10 @@ app.post('/api/suggestions', (req, res) => {
         const { fileContent, cursorPosition, filePath, verbose } = req.body;
 
         // Validate required fields
-        if (!fileContent) {
+        if (!fileContent || typeof fileContent !== 'string') {
             return res.status(400).json({
                 error: 'Bad Request',
-                message: 'fileContent is required'
+                message: 'fileContent is required and must be a string'
             });
         }
 
@@ -137,6 +144,15 @@ app.post('/api/suggestions', (req, res) => {
             return res.status(400).json({
                 error: 'Bad Request',
                 message: 'cursorPosition must be an array of [line, column]'
+            });
+        }
+
+        // Validate cursor position values
+        const [line, column] = cursorPosition;
+        if (typeof line !== 'number' || typeof column !== 'number' || line < 0 || column < 0) {
+            return res.status(400).json({
+                error: 'Bad Request',
+                message: 'cursorPosition values must be non-negative numbers'
             });
         }
 
@@ -186,11 +202,16 @@ app.use((req, res) => {
 /**
  * Error handler
  */
-app.use((err, req, res, next) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
     console.error('Error:', err);
+    // Sanitize error message to avoid exposing sensitive information
+    const message = process.env.NODE_ENV === 'production' 
+        ? 'An error occurred processing your request'
+        : err.message;
     res.status(500).json({
         error: 'Internal Server Error',
-        message: err.message
+        message: message
     });
 });
 

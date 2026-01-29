@@ -195,7 +195,7 @@ function exampleConfidenceScores() {
 
         if (suggestions.length > 0) {
             console.log(`\nTop suggestion confidence: ${(suggestions[0].confidence * 100).toFixed(0)}%`);
-            console.log('Interpretation: ', end = '');
+            process.stdout.write('Interpretation: ');
             const conf = suggestions[0].confidence;
             if (conf >= 0.90) {
                 console.log('Very confident - this is a well-established pattern');

@@ -8,6 +8,7 @@
     "simulate": "node copilot_simulator.js",
     "examples:basic": "node examples-js/basic_examples.js",
     "examples:advanced": "node examples-js/advanced_examples.js",
+    "examples:api": "node examples-js/api_client_example.js",
     "test": "node copilot_simulator.js && echo 'All examples passed!'"
   },
   "keywords": [
@@ -21,6 +22,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.13.4",
     "express": "^4.18.2"
   },
   "engines": {

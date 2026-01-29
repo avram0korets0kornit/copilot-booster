@@ -89,8 +89,10 @@ class ContextGatherer {
         const imports = lines.filter(line => {
             const trimmed = line.trim();
             return trimmed.startsWith('import ') || 
-                   trimmed.startsWith('const ') && trimmed.includes('require(') ||
-                   trimmed.startsWith('from ');
+                   trimmed.startsWith('export ') ||
+                   (trimmed.startsWith('const ') && trimmed.includes('require(')) ||
+                   (trimmed.startsWith('let ') && trimmed.includes('require(')) ||
+                   (trimmed.startsWith('var ') && trimmed.includes('require('));
         });
 
         // Extract comments (// and /* */ style)
