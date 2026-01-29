@@ -46,13 +46,30 @@ Ensures quality and safety:
 
 ## 🚀 Quick Start
 
-### Running the Simulation
+### Python Implementation
 
 ```bash
 python copilot_simulator.py
 ```
 
 This will run several examples demonstrating how Copilot generates suggestions in different scenarios.
+
+### Node.js Implementation
+
+For developers more familiar with JavaScript, we also provide a complete Node.js implementation:
+
+```bash
+# Install dependencies
+npm install
+
+# Run the simulator
+node copilot_simulator.js
+
+# Or start the REST API server
+npm start
+```
+
+See [README-nodejs.md](README-nodejs.md) for complete Node.js documentation and API usage.
 
 ### Example Output
 

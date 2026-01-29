@@ -1,0 +1,29 @@
+{
+  "name": "copilot-booster",
+  "version": "1.0.0",
+  "description": "An educational simulation that demonstrates how GitHub Copilot works internally",
+  "main": "copilot_simulator.js",
+  "scripts": {
+    "start": "node server.js",
+    "simulate": "node copilot_simulator.js",
+    "examples:basic": "node examples-js/basic_examples.js",
+    "examples:advanced": "node examples-js/advanced_examples.js",
+    "test": "node copilot_simulator.js && echo 'All examples passed!'"
+  },
+  "keywords": [
+    "copilot",
+    "github",
+    "ai",
+    "code-completion",
+    "education",
+    "simulation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
